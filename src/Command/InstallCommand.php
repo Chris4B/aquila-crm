@@ -34,16 +34,23 @@ class InstallCommand extends Command
         $io->title('Checking System Requirements');
 
         // Check system requirements
-        $errors = $this->requirements->checkRequirements();
+        $errors = $this->requirements->getFailedRequirements();
+        $warnings = $this->requirements->getFailedRecommendations();
 
         
 
         if (!empty($errors)) {
             foreach ($errors as $error) {
-                $io->error($error);
+                $io->error($error->getTestMessage());
             }
             $io->error('System requirements check failed. Please review the requirements.');
             return Command::FAILURE;
+        }
+
+        if (!empty($warnings)) {
+            foreach ($warnings as $warning) {
+                $io->warning($warning->getTestMessage());
+            }
         }
 
         $io->success('System requirements check passed. Your system meets the requirements.');

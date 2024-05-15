@@ -2,27 +2,27 @@
 
 namespace App\SystemRequirements;
 
-use const PHP_VERSION;
-use const PHP_VERSION_ID;
+use App\Requirements\SymfonyRequirements;
 
-class AppRequirements
+
+class AppRequirements extends SymfonyRequirements
 {
-    public function checkRequirements(): array
-    {
+   public function __construct()
+   {
+    $this->addRequirement(
+        PHP_VERSION_ID >= 70415,
+        sprintf('PHP version must be at least %s (%s installed)', '7.4.15', PHP_VERSION),
+        sprintf(
+            'You are running PHP version "<strong>%s</strong>", but SolidInvoice needs at least PHP "<strong>%s</strong>" to run.
+        Before using SolidInvoice, upgrade your PHP installation, preferably to the latest version.',
+            '7.4.15',
+            PHP_VERSION
+        ),
+        sprintf('Install PHP %s or newer (installed version is %s)', '7.4.15', PHP_VERSION)
+    );
+    parent::__construct();
 
-        
-        $errors = [];
-
-        // Vérifiez les exigences système personnalisées ici
-        if (version_compare(PHP_VERSION, '7.4.15', '<')) {
-            $errors[] = 'PHP version must be at least 7.4.15.';
-        }
-
-        // Ajoutez d'autres vérifications d'exigences système personnalisées selon vos besoins
-
-        return $errors;
-        
-    }
+   }
 
     
 }
