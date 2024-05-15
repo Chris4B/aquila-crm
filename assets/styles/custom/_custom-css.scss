@@ -1,0 +1,9 @@
+.alert.fade.hide {
+    transition: opacity 0.5s ease-out; /* Animation de disparition */
+    opacity: 0;
+}
+
+.highlight {
+    background-color: yellow; 
+    color: black; 
+}

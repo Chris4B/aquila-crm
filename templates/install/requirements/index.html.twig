@@ -21,7 +21,7 @@
 
 
 {% block body %}
-dump {{ requirements.error}}
+
     <div class="row">
         <div class="col-10 offset-1">
             <div class="card card-primary">
@@ -35,9 +35,9 @@ dump {{ requirements.error}}
                                 <li class="list-group-item disabled" aria-disabled="true">
                                     {{ 'installation.requirements.mandatory'|trans }}
                                 </li>
-                                {# {% for requirement in requirements.requirements %}
+                                {% for requirement in requirements %}
                                     {{ requirementCheck(requirement) }}
-                                {% endfor %} #}
+                                {% endfor %}
                             </ul>
                         </div>
                         <div class="col-md-6 d-flex">
