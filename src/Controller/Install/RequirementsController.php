@@ -12,8 +12,12 @@ class RequirementsController extends AbstractController
     #[Route('/', name: 'app_install_requirements')]
     public function index(): Response
     {
+        $requirements = new AppRequirements();
+       
+
+        // dd($requirements->getRequirements());
         return $this->render('install/requirements/index.html.twig', [
-            'requirements' => new AppRequirements(),
+            'requirements' => $requirements,
         ]);
     }
 }

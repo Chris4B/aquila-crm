@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-nonav.html.twig' %}
 
 {% block title %}Hello RequirementsController!{% endblock %}
 
@@ -22,53 +22,92 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col-10 offset-1">
-            <div class="card card-primary">
-                <div class="card-header with-border">
-                    <h3 class="card-title"></h3>
+    {% if requirements.failedRequirements|length > 0 %}
+    <div class="alert alert-danger">
+        <div class="d-none col-sm-1">
+            <i class="mdi mdi-cancel mdi-48px"></i>
+        </div>
+        <strong>{{ 'installation.requirements.not_met'|trans }}</strong>
+        <br />
+        {{ 'installation.requirements.message'|trans }}
+        <br class="clear" />
+    </div>
+    {% endif %}
+
+
+    <div class="card widget-flat ">
+
+        <div class="card-header" >
+            <h3>System Requirements</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 d-flex">
+                    <ul class="list-group">
+                        <li class="list-group-item disabled " aria-disabled="true">
+                            Mandatory
+                        </li>
+                        {% import 'install/macro/_requirements.html.twig' as macros %}
+                           {{macros.requirements(requirements.requirements)}} 
+                        
+                        
+                        
+                    </ul>
                 </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6 d-flex">
-                            <ul class="list-group">
-                                <li class="list-group-item disabled" aria-disabled="true">
-                                    {{ 'installation.requirements.mandatory'|trans }}
-                                </li>
-                                {% for requirement in requirements %}
-                                    {{ requirementCheck(requirement) }}
-                                {% endfor %}
-                            </ul>
-                        </div>
-                        <div class="col-md-6 d-flex">
-                            <ul class="list-group">
-                                <li class="list-group-item disabled" aria-disabled="true">
-                                    {{ 'installation.requirements.optional'|trans }}
-                                </li>
-                                {# {% for requirement in requirements.recommendations %}
-                                    {{ requirementCheck(requirement) }}
-                                {% endfor %} #}
-                            </ul>
-                        </div>
-                    </div>
+                <div class="col-md-6 d-flex">
+                    <ul class="list-group">
+                        <li class="list-group-item disabled " aria-disabled="true">
+                            Optionnal
+                        </li>
+                        {{macros.requirements(requirements.recommendations)}}
+                        
+                       
                 </div>
-                <div class="card-footer">
-                    <div class="row">
-                        <div class="col align-self-start">
-                            {# <a href="{{ path('_install_check_requirements') }}" class="btn btn-warning btn-block"> #}
-                                {# {{ icon('refresh') }} {{ "installation.action.refresh"|trans }} #}
-                            {# </a> #}
-                        </div>
-                        <div class="col-8">
-                        </div>
-                        <div class="col">
-                            {# <a id="continue_step" href="{{ path('_install_config') }}" class="btn btn-success float-right btn-block{% if requirements.failedRequirements|length > 0 %} disabled{% endif %}"> #}
-                                {# {{ "installation.action.next"|trans }} {{ icon('arrow-right') }} #}
-                            {# </a> #}
-                        </div>
-                    </div>
-                </div>
+
+                {% for requirement in requirements%}
+                            <li>{{dump(requirement.failedRecommendations)}}
+                        {% endfor  %}
             </div>
         </div>
+        <div class= "card-footer d-flex justify-content-between">
+            
+            <div class="align-self-start">
+                <a href="#" class="btn btn-warning btn-block">
+                    <span class="text-info">
+                    <i class="mdi mdi-refresh"></i>
+                    </span>
+                    Refresh
+                </a>
+            </div>
+            <div class="align-self-end">
+                <a href="#" class="btn btn-success btn-block{% if requirements.failedRequirements|length > 0 %} disabled{% endif %}">
+                    <span class="text-info">
+                    <i class="mdi mdi-arrow-right text-info"></i>
+                    </span>
+                    
+                   
+                    Suivant
+                </a>
+            </div>
+           
+        </div>
+
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

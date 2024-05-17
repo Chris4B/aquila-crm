@@ -1,0 +1,31 @@
+{% macro requirements(checks) %}
+    <ul class="list-group">
+        {% for check in checks %}
+            <li class="list-group-item">
+                {% if check.fulfilled %}
+                    <span class="text-success">
+                        <i class="mdi mdi-check-circle"></i> 
+                    </span>
+                {% elseif not check.optional %}
+                    <span class="text-danger">
+                        <i class="mdi mdi-cancel"></i>
+                    </span>
+                {% else %}
+                    <span class="text-warning">
+                    <i class="mdi mdi-alert"></i>
+                    </span>
+                {% endif %}
+
+                {{check.testmessage}}
+
+                {% if not check.fulfilled %}
+                    <p class="list-group-item-text">
+                        <small><i>{{ check.helpHtml|raw }}</i></small>
+                    </p>
+                {% endif %}
+                
+            </li>
+        {% endfor %}    
+           
+    </ul>
+{% endmacro  %}

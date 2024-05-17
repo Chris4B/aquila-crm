@@ -25,15 +25,19 @@
 	</head>
 	<body>
 		
-        <div class="content-page">
-            <div class="content">
-                <div class="content-fluid">
-                    {% block body %}
-                    
-                    
-                    {% endblock %}
-                </div>
+        <div class="container-lg">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#"><strong>Aquilas CRM</Strong></a>
+                    </div>
+                </nav>
             </div>
+            {% block body %}
+            
+            
+            {% endblock %}
+                        
         </div>
 
 

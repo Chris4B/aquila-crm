@@ -9,9 +9,13 @@
 import './styles/app.scss';
 
 
-import 'bootstrap';
+// import 'bootstrap';
 
-
+const $ = require('jquery');
+require ('bootstrap');
+$(function() {
+    $('[data-toggle="popover"]').popover();
+});
 
 
 
