@@ -24,6 +24,12 @@ services:
     App\Command\InstallCommand:
         tags: ['console.command']
 
+    App\Service\DatabaseConfigurator:
+        arguments:
+            $pdo: '@database_connection'
+    database_connection:
+        class: PDO
+        factory: ['App\Service\DatabaseConfigurator\DatabaseConnectionFactory', 'createConnection']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
