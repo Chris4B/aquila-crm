@@ -3,22 +3,25 @@
 namespace App\Entity;
 
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 class DatabaseConfig
 {
 
-    
+    #[Assert\NotBlank]
     private ?string $databaseHost = null;
 
-    
+    #[Assert\NotBlank]
     private ?string $databasePort = null;
 
-    
+    #[Assert\NotBlank]
     private ?string $databaseName = null;
 
-   
+    #[Assert\NotBlank]
     private ?string $databaseUser = null;
 
-    
+    #[Assert\NotBlank]
     private ?string $databasePassword = null;
 
 
