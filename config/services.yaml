@@ -24,7 +24,7 @@ services:
     App\Command\InstallCommand:
         tags: ['console.command']
 
-    App\Service\DatabaseConfigurator:
+    App\Service\DatabaseConfigurator\DatabaseConfigurator:
         arguments:
             $pdo: '@database_connection'
     database_connection:
