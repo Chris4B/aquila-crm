@@ -8,6 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class DatabaseConfig
 {
+    #[Assert\NotBlank]
+    private ?string $databaseDriver = null;
 
     #[Assert\NotBlank]
     private ?string $databaseHost = null;
@@ -21,10 +23,20 @@ class DatabaseConfig
     #[Assert\NotBlank]
     private ?string $databaseUser = null;
 
-    #[Assert\NotBlank]
-    private ?string $databasePassword = null;
+    
+    private ?string $databasePassword = '';
 
 
+
+    public function setDatabaseDriver(?string $databaseDriver): self
+    {
+        $this->databaseDriver = $databaseDriver;
+        return $this;
+    }
+    public function getDatabaseDriver(): ?string
+    {
+        return $this->databaseDriver;
+    }
 
     public function getDatabaseHost(): ?string
     {

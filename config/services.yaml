@@ -26,7 +26,7 @@ services:
 
     App\Service\DatabaseConfigurator\DatabaseConfigurator:
         arguments:
-            $pdo: '@database_connection'
+            $logger: '@logger'
     database_connection:
         class: PDO
         factory: ['App\Service\DatabaseConfigurator\DatabaseConnectionFactory', 'createConnection']

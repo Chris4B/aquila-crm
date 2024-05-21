@@ -1,6 +1,6 @@
 {% extends 'base-nonav.html.twig' %}
 
-{% block title %}Hello RequirementsController!{% endblock %}
+{% block title %}APP Requirements!{% endblock %}
 
 {# {% block body %}
 <style>
@@ -80,7 +80,7 @@
                 </a>
             </div>
             <div class="align-self-end">
-                <a href="#" class="btn btn-success btn-block{% if requirements.failedRequirements|length > 0 %} disabled{% endif %}">
+                <a href="{{ path('app_install_database_config') }}" class="btn btn-success btn-block{% if requirements.failedRequirements|length > 0 %} disabled{% endif %}">
                     <span class="text-info">
                     <i class="mdi mdi-arrow-right text-info"></i>
                     </span>
