@@ -31,5 +31,31 @@ services:
         class: PDO
         factory: ['App\Service\DatabaseConfigurator\DatabaseConnectionFactory', 'createConnection']
 
+
+    App\Service\DatabaseConfiguratorFilePath: ~
+        # arguments:
+            # $connectionsFilePath: '%kernel.project_dir%/path/to/connections.xml'
+            
+
+    App\Service\DatabaseConnection\DatabaseConnectionConfigurator:
+        arguments:
+            $systemInfoProvider: '@App\Service\SystemInfo\SystemInfoProvider'
+            $xmlFileManager: '@App\Service\XmlFile\XmlFileManager'
+            $logger: '@logger'
+            $serverVersionProvider: '@App\Service\ServerVersion\ServerVersionProvider'
+            $uuidGenerator: '@App\Utils\UuidGenerator'
+            $userProvider: '@App\Service\SystemInfo\UserProvider'
+
+    
+    App\Service\XmlFile\XmlFileManager:
+        arguments:
+            $logger: '@logger'
+
+    App\Service\ServerVersion\ServerVersionProvider:
+        arguments:
+            $logger: '@logger'
+
+    App\Util\UuidGenerator: ~
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

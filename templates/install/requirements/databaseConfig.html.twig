@@ -30,6 +30,10 @@
                                 {{ form_label(database_form.databaseDriver, null, {'label_attr': {'class': 'form-label'}}) }}
                                 {{ form_widget(database_form.databaseDriver, {'attr': {'class': 'form-control'}}) }}
                             </div>
+                             <div class="mb-3">
+                                {{ form_label(database_form.connectionName, null, {'label_attr': {'class': 'form-label'}}) }}
+                                {{ form_widget(database_form.connectionName, {'attr': {'class': 'form-control'}}) }}
+                            </div>
                             <div class="mb-3">
                           
                                 {{form_label(database_form.databaseHost,null,{

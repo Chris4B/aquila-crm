@@ -20,6 +20,15 @@ class DatabaseConfigType extends AbstractType
                 'label' => 'Database Driver',
                 'attr' => ['class' => 'form-control']
             ])
+
+            ->add('connectionName',TextType::class,[
+                'label'=> 'database Connection',
+                'attr' => [
+                    'class' => 'form-control',
+                    'readonly' => true
+                ],
+                
+            ])
             ->add('databaseHost', TextType::class, [
                 'label' => 'Database Host',
                 'attr' => ['class' => 'form-control']

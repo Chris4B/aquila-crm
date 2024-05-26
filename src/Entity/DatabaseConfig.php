@@ -8,6 +8,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class DatabaseConfig
 {
+    
+    private string  $connectionName = 'Aquilas-CRM';
+
     #[Assert\NotBlank]
     private ?string $databaseDriver = null;
 
@@ -26,7 +29,10 @@ class DatabaseConfig
     
     private ?string $databasePassword = '';
 
-
+    public function getConnectionName(): string
+    {
+        return $this->connectionName;
+    }
 
     public function setDatabaseDriver(?string $databaseDriver): self
     {
